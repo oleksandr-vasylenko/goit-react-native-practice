@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Platform,
   KeyboardAvoidingView,
+  Keyboard,
 } from "react-native";
 // import { TextInput } from "react-native-web";
 // import RegistrationScreen from "./Screens/RegistrationScreen";
@@ -16,7 +17,12 @@ import {
 export default function App() {
   console.log(Platform.OS);
   const [isShownKeyboard, setIsShownKeyboard] = useState(false);
-  false;
+
+  const keyboardHide = () => {
+    setIsShownKeyboard(false);
+    Keyboard.dismiss();
+  };
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -50,7 +56,11 @@ export default function App() {
               />
             </View>
 
-            <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={styles.btn}
+              onPress={keyboardHide}
+            >
               <Text style={styles.btnTitle}>SIGN IN</Text>
             </TouchableOpacity>
           </View>
@@ -74,8 +84,8 @@ const styles = StyleSheet.create({
   authBcg: {
     flex: 1,
     resizeMode: "cover",
-    // justifyContent: "flex-end",
-    justifyContent: "center",
+    justifyContent: "flex-end",
+    // justifyContent: "center",
     // alignItems: "center",
   },
   input: {
