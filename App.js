@@ -6,12 +6,14 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 // import { TextInput } from "react-native-web";
 // import RegistrationScreen from "./Screens/RegistrationScreen";
 // import LoginScreen  from "./Screens/LoginScreen";
 
 export default function App() {
+  console.log(Platform.OS);
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -58,7 +60,8 @@ const styles = StyleSheet.create({
   authBcg: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "flex-end",
+    // justifyContent: "flex-end",
+    justifyContent: "center",
     // alignItems: "center",
   },
   input: {
@@ -82,7 +85,9 @@ const styles = StyleSheet.create({
   },
 
   btn: {
-    backgroundColor: "#fff",
+    backgroundColor: Platform.OS === "ios" ? "#4169e1" : "#ffb6c1",
+    borderColor: Platform.OS === "ios" ? "f0f8ff" : "transparent",
+    borderWidth: 1,
     height: 40,
     borderRadius: 6,
     marginTop: 30,
@@ -92,7 +97,8 @@ const styles = StyleSheet.create({
   },
 
   btnTitle: {
-    color: "tomato",
+    color: Platform.OS === "ios" ? "#fff" : "#blue",
+    // color: "tomato",
     fontSize: 18,
   },
 });
