@@ -85,8 +85,6 @@ const styles = StyleSheet.create({
   },
 
   btn: {
-    backgroundColor: Platform.OS === "ios" ? "#4169e1" : "#ffb6c1",
-    borderColor: Platform.OS === "ios" ? "f0f8ff" : "transparent",
     borderWidth: 1,
     height: 40,
     borderRadius: 6,
@@ -94,6 +92,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginHorizontal: 80,
+
+    ...Platform.select({
+      ios: {
+        backgroundColor: "#4169e1",
+        borderColor: "#f0f8ff",
+      },
+      android: {
+        backgroundColor: "#ffb6c1",
+        borderColor: "transparent",
+      },
+      web: {
+        backgroundColor: "#ffb6c1",
+        borderColor: "transparent",
+      },
+    }),
+
+    // backgroundColor: Platform.OS === "ios" ? "#4169e1" : "#ffb6c1",
+    // borderColor: Platform.OS === "ios" ? "#f0f8ff" : "transparent",
   },
 
   btnTitle: {
