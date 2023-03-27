@@ -9,6 +9,7 @@ import {
   Platform,
   KeyboardAvoidingView,
   Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
 // import { TextInput } from "react-native-web";
 // import RegistrationScreen from "./Screens/RegistrationScreen";
@@ -24,49 +25,59 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <ImageBackground
-        style={styles.authBcg}
-        source={require("./assets/images/authBcg.jpg")}
-      >
-        {/* <RegistrationScreen /> */}
-        {/* <LoginScreen /> */}
-
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
+    <TouchableWithoutFeedback onPress={keyboardHide}>
+      <View style={styles.container}>
+        <ImageBackground
+          style={styles.authBcg}
+          source={require("./assets/images/authBcg.jpg")}
         >
-          <View
-            style={{ ...styles.form, marginBottom: isShownKeyboard ? 20 : 100 }}
+          {/* <RegistrationScreen /> */}
+          {/* <LoginScreen /> */}
+
+          <KeyboardAvoidingView
+            behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
-            <View>
-              <Text style={styles.inputTitle}>EMAIL ADDRESS</Text>
-              <TextInput
-                style={styles.input}
-                textAlign={"center"}
-                onFocus={() => setIsShownKeyboard(true)}
-              />
-            </View>
-            <View style={{ marginTop: 20 }}>
-              <Text style={styles.inputTitle}>PASSWORD</Text>
-              <TextInput
-                style={styles.input}
-                textAlign={"center"}
-                secureTextEntry={true}
-                onFocus={() => setIsShownKeyboard(true)}
-              />
+            <View style={styles.header}>
+              <Text style={styles.headerTitle}>Hello World</Text>
+              <Text style={styles.headerTitle}>This is React Native!</Text>
             </View>
 
-            <TouchableOpacity
-              activeOpacity={0.8}
-              style={styles.btn}
-              onPress={keyboardHide}
+            <View
+              style={{
+                ...styles.form,
+                marginBottom: isShownKeyboard ? 20 : 100,
+              }}
             >
-              <Text style={styles.btnTitle}>SIGN IN</Text>
-            </TouchableOpacity>
-          </View>
-        </KeyboardAvoidingView>
-      </ImageBackground>
-    </View>
+              <View>
+                <Text style={styles.inputTitle}>EMAIL ADDRESS</Text>
+                <TextInput
+                  style={styles.input}
+                  textAlign={"center"}
+                  onFocus={() => setIsShownKeyboard(true)}
+                />
+              </View>
+              <View style={{ marginTop: 20 }}>
+                <Text style={styles.inputTitle}>PASSWORD</Text>
+                <TextInput
+                  style={styles.input}
+                  textAlign={"center"}
+                  secureTextEntry={true}
+                  onFocus={() => setIsShownKeyboard(true)}
+                />
+              </View>
+
+              <TouchableOpacity
+                activeOpacity={0.8}
+                style={styles.btn}
+                onPress={keyboardHide}
+              >
+                <Text style={styles.btnTitle}>SIGN IN</Text>
+              </TouchableOpacity>
+            </View>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      </View>
+    </TouchableWithoutFeedback>
   );
 }
 
@@ -141,5 +152,14 @@ const styles = StyleSheet.create({
     color: Platform.OS === "ios" ? "#fff" : "#blue",
     // color: "tomato",
     fontSize: 18,
+  },
+
+  header: {
+    alignItems: "center",
+    marginBottom: 100,
+  },
+  headerTitle: {
+    fontSize: 30,
+    color: "white",
   },
 });
