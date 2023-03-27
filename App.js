@@ -5,7 +5,7 @@ import {
   Text,
   View,
   TextInput,
-  Button,
+  TouchableOpacity,
 } from "react-native";
 // import { TextInput } from "react-native-web";
 // import RegistrationScreen from "./Screens/RegistrationScreen";
@@ -34,7 +34,10 @@ export default function App() {
               secureTextEntry={true}
             />
           </View>
-          <Button title="SIGN IN" />
+
+          <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+            <Text style={styles.btnTitle}>SIGN IN</Text>
+          </TouchableOpacity>
         </View>
       </ImageBackground>
     </View>
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
   authBcg: {
     flex: 1,
     resizeMode: "cover",
-    justifyContent: "center",
+    justifyContent: "flex-end",
     // alignItems: "center",
   },
   input: {
@@ -75,6 +78,21 @@ const styles = StyleSheet.create({
   inputTitle: {
     color: "#fff",
     marginBottom: 5,
+    fontSize: 18,
+  },
+
+  btn: {
+    backgroundColor: "#fff",
+    height: 40,
+    borderRadius: 6,
+    marginTop: 30,
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: 80,
+  },
+
+  btnTitle: {
+    color: "tomato",
     fontSize: 18,
   },
 });
