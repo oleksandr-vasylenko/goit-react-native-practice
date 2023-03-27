@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ImageBackground,
   StyleSheet,
@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
+  KeyboardAvoidingView,
 } from "react-native";
 // import { TextInput } from "react-native-web";
 // import RegistrationScreen from "./Screens/RegistrationScreen";
@@ -14,6 +15,8 @@ import {
 
 export default function App() {
   console.log(Platform.OS);
+  const [isShownKeyboard, setIsShownKeyboard] = useState(false);
+  false;
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -23,24 +26,35 @@ export default function App() {
         {/* <RegistrationScreen /> */}
         {/* <LoginScreen /> */}
 
-        <View style={styles.form}>
-          <View>
-            <Text style={styles.inputTitle}>EMAIL ADDRESS</Text>
-            <TextInput style={styles.input} textAlign={"center"} />
-          </View>
-          <View style={{ marginTop: 20 }}>
-            <Text style={styles.inputTitle}>PASSWORD</Text>
-            <TextInput
-              style={styles.input}
-              textAlign={"center"}
-              secureTextEntry={true}
-            />
-          </View>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <View
+            style={{ ...styles.form, marginBottom: isShownKeyboard ? 20 : 100 }}
+          >
+            <View>
+              <Text style={styles.inputTitle}>EMAIL ADDRESS</Text>
+              <TextInput
+                style={styles.input}
+                textAlign={"center"}
+                onFocus={() => setIsShownKeyboard(true)}
+              />
+            </View>
+            <View style={{ marginTop: 20 }}>
+              <Text style={styles.inputTitle}>PASSWORD</Text>
+              <TextInput
+                style={styles.input}
+                textAlign={"center"}
+                secureTextEntry={true}
+                onFocus={() => setIsShownKeyboard(true)}
+              />
+            </View>
 
-          <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
-            <Text style={styles.btnTitle}>SIGN IN</Text>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity activeOpacity={0.8} style={styles.btn}>
+              <Text style={styles.btnTitle}>SIGN IN</Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
     </View>
   );
@@ -76,6 +90,7 @@ const styles = StyleSheet.create({
 
   form: {
     marginHorizontal: 16,
+    // marginBottom: 40,
   },
 
   inputTitle: {
