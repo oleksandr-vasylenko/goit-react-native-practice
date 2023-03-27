@@ -1,5 +1,15 @@
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import { TextInput } from "react-native-web";
+import React from "react";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+} from "react-native";
+// import { TextInput } from "react-native-web";
+// import RegistrationScreen from "./Screens/RegistrationScreen";
+// import LoginScreen  from "./Screens/LoginScreen";
 
 export default function App() {
   return (
@@ -8,10 +18,23 @@ export default function App() {
         style={styles.authBcg}
         source={require("./assets/images/authBcg.jpg")}
       >
-        <View>
-          <TextInput style={styles.input} />
-          <TextInput style={styles.input} />
-          <TextInput style={styles.input} />
+        {/* <RegistrationScreen /> */}
+        {/* <LoginScreen /> */}
+
+        <View style={styles.form}>
+          <View>
+            <Text style={styles.inputTitle}>EMAIL ADDRESS</Text>
+            <TextInput style={styles.input} textAlign={"center"} />
+          </View>
+          <View style={{ marginTop: 20 }}>
+            <Text style={styles.inputTitle}>PASSWORD</Text>
+            <TextInput
+              style={styles.input}
+              textAlign={"center"}
+              secureTextEntry={true}
+            />
+          </View>
+          <Button title="SIGN IN" />
         </View>
       </ImageBackground>
     </View>
@@ -40,8 +63,18 @@ const styles = StyleSheet.create({
     borderColor: "black",
     height: 40,
     borderRadius: 6,
-    marginHorizontal: 16,
+
     color: "#fff",
     textAlign: "center",
+  },
+
+  form: {
+    marginHorizontal: 16,
+  },
+
+  inputTitle: {
+    color: "#fff",
+    marginBottom: 5,
+    fontSize: 18,
   },
 });
