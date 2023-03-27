@@ -1,16 +1,19 @@
-// import React from "react";
-// import { StatusBar } from "expo-status-bar";
 import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { TextInput } from "react-native-web";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.text}>Hello World!</Text> */}
-      {/* <StatusBar style="auto" /> */}
       <ImageBackground
-        style={styles.image}
+        style={styles.authBcg}
         source={require("./assets/images/authBcg.jpg")}
-      ></ImageBackground>
+      >
+        <View>
+          <TextInput style={styles.input} />
+          <TextInput style={styles.input} />
+          <TextInput style={styles.input} />
+        </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -26,9 +29,19 @@ const styles = StyleSheet.create({
     // color: "green",
     // fontSize: 30,
   },
-  image: {
+  authBcg: {
     flex: 1,
     resizeMode: "cover",
     justifyContent: "center",
+    // alignItems: "center",
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "black",
+    height: 40,
+    borderRadius: 6,
+    marginHorizontal: 16,
+    color: "#fff",
+    textAlign: "center",
   },
 });
