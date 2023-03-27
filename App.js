@@ -11,17 +11,27 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
+
 // import { TextInput } from "react-native-web";
 // import RegistrationScreen from "./Screens/RegistrationScreen";
 // import LoginScreen  from "./Screens/LoginScreen";
+
+const initialState = {
+  email: "",
+  password: "",
+};
 
 export default function App() {
   console.log(Platform.OS);
   const [isShownKeyboard, setIsShownKeyboard] = useState(false);
 
+  const [state, setstate] = useState(initialState);
+
   const keyboardHide = () => {
     setIsShownKeyboard(false);
     Keyboard.dismiss();
+    console.log(state);
+    setstate(initialState);
   };
 
   return (
@@ -54,6 +64,10 @@ export default function App() {
                   style={styles.input}
                   textAlign={"center"}
                   onFocus={() => setIsShownKeyboard(true)}
+                  value={state.email}
+                  onChangeText={(value) =>
+                    setstate((prevState) => ({ ...prevState, email: value }))
+                  }
                 />
               </View>
               <View style={{ marginTop: 20 }}>
@@ -63,6 +77,10 @@ export default function App() {
                   textAlign={"center"}
                   secureTextEntry={true}
                   onFocus={() => setIsShownKeyboard(true)}
+                  value={state.password}
+                  onChangeText={(value) =>
+                    setstate((prevState) => ({ ...prevState, password: value }))
+                  }
                 />
               </View>
 
