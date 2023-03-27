@@ -12,6 +12,9 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
+// import * as Font from "expo-font";
+// import * as SplashScreen from "expo-splash-screen";
+
 // import { TextInput } from "react-native-web";
 // import RegistrationScreen from "./Screens/RegistrationScreen";
 // import LoginScreen  from "./Screens/LoginScreen";
@@ -20,6 +23,12 @@ const initialState = {
   email: "",
   password: "",
 };
+
+// const loadApplication = async () => {
+//   await Font.loadAsync({
+//     "RobotoMono-Regular": require("./assets/fonts/static/RobotoMono-Regular.ttf"),
+//   });
+// };
 
 export default function App() {
   console.log(Platform.OS);
