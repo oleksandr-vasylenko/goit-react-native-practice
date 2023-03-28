@@ -20,7 +20,6 @@ const initialState = {
 
 export default function RegistrationScreen() {
   const [isShownKeyboard, setIsShownKeyboard] = useState(false);
-
   const [state, setstate] = useState(initialState);
 
   const keyboardHide = () => {
@@ -60,7 +59,6 @@ export default function RegistrationScreen() {
               <View>
                 <TextInput
                   style={styles.input}
-                  textAlign={"center"}
                   onFocus={() => setIsShownKeyboard(true)}
                   value={state.login}
                   onChangeText={(value) =>
@@ -72,8 +70,13 @@ export default function RegistrationScreen() {
               </View>
               <View style={{ marginTop: 16 }}>
                 <TextInput
-                  style={styles.input}
-                  textAlign={"center"}
+                  style={[
+                    styles.input,
+                    isShownKeyboard && {
+                      borderColor: "#FF6C00",
+                      backgroundColor: "#FFFFFF",
+                    },
+                  ]}
                   onFocus={() => setIsShownKeyboard(true)}
                   value={state.email}
                   onChangeText={(value) =>
@@ -85,8 +88,13 @@ export default function RegistrationScreen() {
               </View>
               <View style={{ marginTop: 16 }}>
                 <TextInput
-                  style={styles.input}
-                  textAlign={"center"}
+                  style={[
+                    styles.input,
+                    isShownKeyboard && {
+                      borderColor: "#FF6C00",
+                      backgroundColor: "#FFFFFF",
+                    },
+                  ]}
                   secureTextEntry={true}
                   onFocus={() => setIsShownKeyboard(true)}
                   value={state.password}
@@ -98,14 +106,20 @@ export default function RegistrationScreen() {
                 />
               </View>
 
-              <TouchableOpacity
-                activeOpacity={0.8}
-                style={styles.btn}
-                onPress={onSubmit}
-              >
-                <Text style={styles.btnTitle}>Зареєструватися</Text>
-              </TouchableOpacity>
-              <Text style={styles.signinText}>Вже є аккаунт? Увійти</Text>
+              {!isShownKeyboard && (
+                <View>
+                  <TouchableOpacity
+                    activeOpacity={0.8}
+                    style={styles.btn}
+                    onPress={onSubmit}
+                  >
+                    <Text style={styles.btnTitle}>Увійти</Text>
+                  </TouchableOpacity>
+                  <Text style={styles.signinText}>
+                    Немає акаунту? Зареєструватися
+                  </Text>
+                </View>
+              )}
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
@@ -163,7 +177,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 16,
     paddingHorizontal: 16,
-    textAlign: "start", // need to investigate if it is possible (and if it is necessary to move to the left on ios)
 
     backgroundColor: "#F6F6F6",
     borderWidth: 1,
