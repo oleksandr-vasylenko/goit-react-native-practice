@@ -95,6 +95,9 @@ export default function LoginScreen() {
                   placeholder="Пароль"
                   placeholderTextColor={"#BDBDBD"}
                 />
+                {/* <View>
+                  <Text style={styles.toggleText}>Показати</Text>
+                </View> */}
               </View>
 
               {!(isEmailFocused || isPasswordFocused) && (
@@ -150,6 +153,8 @@ const styles = StyleSheet.create({
   },
 
   input: {
+    position: "relative",
+
     borderWidth: 1,
     borderColor: "black",
     height: 50,
@@ -177,7 +182,6 @@ const styles = StyleSheet.create({
   },
 
   btnTitle: {
-    // fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: 16,
     fontWeight: 400,
@@ -188,7 +192,6 @@ const styles = StyleSheet.create({
   },
 
   signinText: {
-    // fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: 400,
     fontSize: 16,
