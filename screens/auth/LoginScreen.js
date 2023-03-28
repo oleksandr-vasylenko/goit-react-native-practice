@@ -19,16 +19,19 @@ const initialState = {
 };
 
 export default function LoginScreen() {
-  const [isShownKeyboard, setIsShownKeyboard] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const [state, setstate] = useState(initialState);
 
   const keyboardHide = () => {
-    setIsShownKeyboard(false);
+    setIsEmailFocused(false);
+    setIsPasswordFocused(false);
     Keyboard.dismiss();
   };
 
   const onSubmit = () => {
-    setIsShownKeyboard(false);
+    setIsEmailFocused(false);
+    setIsPasswordFocused(false);
     Keyboard.dismiss();
     console.log(state);
     setstate(initialState);
@@ -47,7 +50,7 @@ export default function LoginScreen() {
             <View
               style={{
                 ...styles.form,
-                paddingBottom: isShownKeyboard ? 32 : 144,
+                paddingBottom: isEmailFocused || isPasswordFocused ? 32 : 144,
               }}
             >
               <View style={styles.formHeader}>
@@ -58,12 +61,13 @@ export default function LoginScreen() {
                 <TextInput
                   style={[
                     styles.input,
-                    isShownKeyboard && {
+                    isEmailFocused && {
                       borderColor: "#FF6C00",
                       backgroundColor: "#FFFFFF",
                     },
                   ]}
-                  onFocus={() => setIsShownKeyboard(true)}
+                  onFocus={() => setIsEmailFocused(true)}
+                  onBlur={() => setIsEmailFocused(false)}
                   value={state.email}
                   onChangeText={(value) =>
                     setstate((prevState) => ({ ...prevState, email: value }))
@@ -76,13 +80,14 @@ export default function LoginScreen() {
                 <TextInput
                   style={[
                     styles.input,
-                    isShownKeyboard && {
+                    isPasswordFocused && {
                       borderColor: "#FF6C00",
                       backgroundColor: "#FFFFFF",
                     },
                   ]}
+                  onFocus={() => setIsPasswordFocused(true)}
+                  onBlur={() => setIsPasswordFocused(false)}
                   secureTextEntry={true}
-                  onFocus={() => setIsShownKeyboard(true)}
                   value={state.password}
                   onChangeText={(value) =>
                     setstate((prevState) => ({ ...prevState, password: value }))
@@ -92,7 +97,7 @@ export default function LoginScreen() {
                 />
               </View>
 
-              {!isShownKeyboard && (
+              {!(isEmailFocused || isPasswordFocused) && (
                 <View>
                   <TouchableOpacity
                     activeOpacity={0.8}
@@ -172,7 +177,7 @@ const styles = StyleSheet.create({
   },
 
   btnTitle: {
-    fontFamily: "Roboto",
+    // fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: 16,
     fontWeight: 400,
@@ -183,7 +188,7 @@ const styles = StyleSheet.create({
   },
 
   signinText: {
-    fontFamily: "Roboto",
+    // fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: 400,
     fontSize: 16,

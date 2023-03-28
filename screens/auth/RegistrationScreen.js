@@ -19,16 +19,23 @@ const initialState = {
 };
 
 export default function RegistrationScreen() {
-  const [isShownKeyboard, setIsShownKeyboard] = useState(false);
+  const [isLoginFocused, setIsLoginFocused] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+
   const [state, setstate] = useState(initialState);
 
   const keyboardHide = () => {
-    setIsShownKeyboard(false);
+    setIsLoginFocused(false);
+    setIsEmailFocused(false);
+    setIsPasswordFocused(false);
     Keyboard.dismiss();
   };
 
   const onSubmit = () => {
-    setIsShownKeyboard(false);
+    setIsLoginFocused(false);
+    setIsEmailFocused(false);
+    setIsPasswordFocused(false);
     Keyboard.dismiss();
     console.log(state);
     setstate(initialState);
@@ -47,7 +54,10 @@ export default function RegistrationScreen() {
             <View
               style={{
                 ...styles.form,
-                paddingBottom: isShownKeyboard ? 32 : 78,
+                paddingBottom:
+                  isLoginFocused || isEmailFocused || isPasswordFocused
+                    ? 32
+                    : 78,
               }}
             >
               <View style={styles.userpic}></View>
@@ -58,8 +68,15 @@ export default function RegistrationScreen() {
 
               <View>
                 <TextInput
-                  style={styles.input}
-                  onFocus={() => setIsShownKeyboard(true)}
+                  style={[
+                    styles.input,
+                    isLoginFocused && {
+                      borderColor: "#FF6C00",
+                      backgroundColor: "#FFFFFF",
+                    },
+                  ]}
+                  onFocus={() => setIsLoginFocused(true)}
+                  onBlur={() => setIsLoginFocused(false)}
                   value={state.login}
                   onChangeText={(value) =>
                     setstate((prevState) => ({ ...prevState, login: value }))
@@ -68,16 +85,18 @@ export default function RegistrationScreen() {
                   placeholderTextColor={"#BDBDBD"}
                 />
               </View>
+
               <View style={{ marginTop: 16 }}>
                 <TextInput
                   style={[
                     styles.input,
-                    isShownKeyboard && {
+                    isEmailFocused && {
                       borderColor: "#FF6C00",
                       backgroundColor: "#FFFFFF",
                     },
                   ]}
-                  onFocus={() => setIsShownKeyboard(true)}
+                  onFocus={() => setIsEmailFocused(true)}
+                  onBlur={() => setIsEmailFocused(false)}
                   value={state.email}
                   onChangeText={(value) =>
                     setstate((prevState) => ({ ...prevState, email: value }))
@@ -86,17 +105,19 @@ export default function RegistrationScreen() {
                   placeholderTextColor={"#BDBDBD"}
                 />
               </View>
+
               <View style={{ marginTop: 16 }}>
                 <TextInput
                   style={[
                     styles.input,
-                    isShownKeyboard && {
+                    isPasswordFocused && {
                       borderColor: "#FF6C00",
                       backgroundColor: "#FFFFFF",
                     },
                   ]}
+                  onFocus={() => setIsPasswordFocused(true)}
+                  onBlur={() => setIsPasswordFocused(false)}
                   secureTextEntry={true}
-                  onFocus={() => setIsShownKeyboard(true)}
                   value={state.password}
                   onChangeText={(value) =>
                     setstate((prevState) => ({ ...prevState, password: value }))
@@ -106,7 +127,7 @@ export default function RegistrationScreen() {
                 />
               </View>
 
-              {!isShownKeyboard && (
+              {!(isLoginFocused || isEmailFocused || isPasswordFocused) && (
                 <View>
                   <TouchableOpacity
                     activeOpacity={0.8}
@@ -198,7 +219,7 @@ const styles = StyleSheet.create({
   },
 
   btnTitle: {
-    fontFamily: "Roboto",
+    // fontFamily: "Roboto",
     fontStyle: "normal",
     fontSize: 16,
     fontWeight: 400,
@@ -209,7 +230,7 @@ const styles = StyleSheet.create({
   },
 
   signinText: {
-    fontFamily: "Roboto",
+    // fontFamily: "Roboto",
     fontStyle: "normal",
     fontWeight: 400,
     fontSize: 16,
