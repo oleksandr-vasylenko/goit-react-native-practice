@@ -40,31 +40,33 @@ export default function RegistrationScreen() {
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
-            <View style={styles.header}>
-              <Text style={styles.headerTitle}>Hello!</Text>
-              <Text style={styles.headerTitle}>Please Sign Up!</Text>
-            </View>
-
             <View
-              style={{
-                ...styles.form,
-                marginBottom: isShownKeyboard ? 20 : 100,
-              }}
+              //   style={{
+              //     ...styles.form,
+              //     marginBottom: isShownKeyboard ? 20 : 100,
+              //   }}
+              style={styles.form}
             >
+              <View style={styles.userpic}></View>
+
+              <View style={styles.formHeader}>
+                <Text style={styles.formTitle}>Реєстрація</Text>
+              </View>
+
               <View>
-                <Text style={styles.inputTitle}>NICKNAME</Text>
+                {/* <Text style={styles.inputTitle}>NICKNAME</Text> */}
                 <TextInput
                   style={styles.input}
                   textAlign={"center"}
                   onFocus={() => setIsShownKeyboard(true)}
-                  value={state.email}
+                  value={state.nickname}
                   onChangeText={(value) =>
                     setstate((prevState) => ({ ...prevState, nickname: value }))
                   }
                 />
               </View>
-              <View style={{ marginTop: 20 }}>
-                <Text style={styles.inputTitle}>EMAIL ADDRESS</Text>
+              <View style={{ marginTop: 16 }}>
+                {/* <Text style={styles.inputTitle}>EMAIL ADDRESS</Text> */}
                 <TextInput
                   style={styles.input}
                   textAlign={"center"}
@@ -75,8 +77,8 @@ export default function RegistrationScreen() {
                   }
                 />
               </View>
-              <View style={{ marginTop: 20 }}>
-                <Text style={styles.inputTitle}>PASSWORD</Text>
+              <View style={{ marginTop: 16 }}>
+                {/* <Text style={styles.inputTitle}>PASSWORD</Text> */}
                 <TextInput
                   style={styles.input}
                   textAlign={"center"}
@@ -94,8 +96,9 @@ export default function RegistrationScreen() {
                 style={styles.btn}
                 onPress={keyboardHide}
               >
-                <Text style={styles.btnTitle}>SIGN UP</Text>
+                <Text style={styles.btnTitle}>Зареєструватися</Text>
               </TouchableOpacity>
+              <Text style={styles.signinText}>Вже є аккаунт? Увійти</Text>
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
@@ -107,7 +110,6 @@ export default function RegistrationScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
     justifyContent: "center",
   },
   text: {
@@ -119,63 +121,90 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "flex-end",
   },
+
+  form: {
+    position: "relative",
+    paddingTop: 92,
+    paddingBottom: 78,
+    borderTopLeftRadius: 25,
+    borderTopRightRadius: 25,
+    backgroundColor: "#ffffff",
+  },
+
+  userpic: {
+    left: "35%", // need to fix here
+    top: -60,
+    position: "absolute",
+    width: 120,
+    height: 120,
+    borderRadius: 16,
+    backgroundColor: "#F6F6F6",
+  },
+
+  formHeader: {
+    alignItems: "center",
+    marginBottom: 32,
+  },
+
+  formTitle: {
+    fontSize: 30,
+    fontWeight: 500,
+    color: "#212121",
+  },
+
   input: {
     borderWidth: 1,
     borderColor: "black",
-    height: 40,
-    borderRadius: 6,
-
-    color: "#fff",
-    textAlign: "center",
-  },
-
-  form: {
+    height: 50,
+    borderRadius: 8,
     marginHorizontal: 16,
+
+    backgroundColor: "#F6F6F6",
+    borderWidth: 1,
+    borderColor: "#E8E8E8",
+
+    // color: "#fff",
+    // textAlign: "center",
   },
 
-  inputTitle: {
-    color: "#fff",
-    marginBottom: 5,
-    fontSize: 18,
-  },
+  //   inputTitle: {
+  //     color: "#fff",
+  //     fontSize: 18,
+  //   },
 
   btn: {
     borderWidth: 1,
-    height: 40,
-    borderRadius: 6,
-    marginTop: 30,
+    borderRadius: 100,
+    marginTop: 44,
     justifyContent: "center",
     alignItems: "center",
-    marginHorizontal: 80,
-
-    ...Platform.select({
-      ios: {
-        backgroundColor: "#4169e1",
-        borderColor: "#f0f8ff",
-      },
-      android: {
-        backgroundColor: "#ffb6c1",
-        borderColor: "transparent",
-      },
-      web: {
-        backgroundColor: "#ffb6c1",
-        borderColor: "transparent",
-      },
-    }),
+    marginHorizontal: 16,
+    marginBottom: 16,
+    paddingTop: 16,
+    paddingBottom: 16,
+    backgroundColor: "#FF6C00",
+    borderWidth: 0,
   },
 
   btnTitle: {
-    color: Platform.OS === "ios" ? "#fff" : "#blue",
-    // color: "tomato",
-    fontSize: 18,
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontSize: 16,
+    fontWeight: 400,
+
+    color: "#ffffff",
+    lineHeight: 19,
+    textAlign: "center",
   },
 
-  header: {
-    alignItems: "center",
-    marginBottom: 100,
-  },
-  headerTitle: {
-    fontSize: 30,
-    color: "white",
+  signinText: {
+    fontFamily: "Roboto",
+    fontStyle: "normal",
+    fontWeight: 400,
+    fontSize: 16,
+
+    color: "#1B4371",
+    lineHeight: 19,
+    textAlign: "center",
   },
 });
