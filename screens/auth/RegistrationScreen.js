@@ -15,7 +15,7 @@ import {
 const initialState = {
   email: "",
   password: "",
-  nickname: "",
+  login: "",
 };
 
 export default function RegistrationScreen() {
@@ -62,9 +62,9 @@ export default function RegistrationScreen() {
                   style={styles.input}
                   textAlign={"center"}
                   onFocus={() => setIsShownKeyboard(true)}
-                  value={state.nickname}
+                  value={state.login}
                   onChangeText={(value) =>
-                    setstate((prevState) => ({ ...prevState, nickname: value }))
+                    setstate((prevState) => ({ ...prevState, login: value }))
                   }
                   placeholder="Логін"
                   placeholderTextColor={"#BDBDBD"}
@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginHorizontal: 16,
     paddingHorizontal: 16,
+    textAlign: "start", // need to investigate if it is possible (and if it is necessary to move to the left on ios)
 
     backgroundColor: "#F6F6F6",
     borderWidth: 1,
