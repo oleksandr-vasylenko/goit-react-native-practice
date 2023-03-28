@@ -132,9 +132,9 @@ const styles = StyleSheet.create({
   },
 
   userpic: {
-    left: "35%", // need to fix here
-    top: -60,
     position: "absolute",
+    alignSelf: "center",
+    top: -60,
     width: 120,
     height: 120,
     borderRadius: 16,
