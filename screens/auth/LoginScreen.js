@@ -18,7 +18,6 @@ const initialState = {
 };
 
 export default function LoginScreen() {
-  console.log(Platform.OS);
   const [isShownKeyboard, setIsShownKeyboard] = useState(false);
 
   const [state, setstate] = useState(initialState);
@@ -26,7 +25,6 @@ export default function LoginScreen() {
   const keyboardHide = () => {
     setIsShownKeyboard(false);
     Keyboard.dismiss();
-    console.log(state);
     setstate(initialState);
   };
 
@@ -41,8 +39,8 @@ export default function LoginScreen() {
             behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
             <View style={styles.header}>
-              <Text style={styles.headerTitle}>Hello World</Text>
-              <Text style={styles.headerTitle}>This is React Native!</Text>
+              <Text style={styles.headerTitle}>Hello!</Text>
+              <Text style={styles.headerTitle}>Please Sign In</Text>
             </View>
 
             <View
