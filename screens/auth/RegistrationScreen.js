@@ -26,7 +26,12 @@ export default function RegistrationScreen() {
   const keyboardHide = () => {
     setIsShownKeyboard(false);
     Keyboard.dismiss();
-    // console.log(state);
+  };
+
+  const onSubmit = () => {
+    setIsShownKeyboard(false);
+    Keyboard.dismiss();
+    console.log(state);
     setstate(initialState);
   };
 
@@ -41,11 +46,10 @@ export default function RegistrationScreen() {
             behavior={Platform.OS === "ios" ? "padding" : "height"}
           >
             <View
-              //   style={{
-              //     ...styles.form,
-              //     marginBottom: isShownKeyboard ? 20 : 100,
-              //   }}
-              style={styles.form}
+              style={{
+                ...styles.form,
+                paddingBottom: isShownKeyboard ? 32 : 78,
+              }}
             >
               <View style={styles.userpic}></View>
 
@@ -54,7 +58,6 @@ export default function RegistrationScreen() {
               </View>
 
               <View>
-                {/* <Text style={styles.inputTitle}>NICKNAME</Text> */}
                 <TextInput
                   style={styles.input}
                   textAlign={"center"}
@@ -68,7 +71,6 @@ export default function RegistrationScreen() {
                 />
               </View>
               <View style={{ marginTop: 16 }}>
-                {/* <Text style={styles.inputTitle}>EMAIL ADDRESS</Text> */}
                 <TextInput
                   style={styles.input}
                   textAlign={"center"}
@@ -82,7 +84,6 @@ export default function RegistrationScreen() {
                 />
               </View>
               <View style={{ marginTop: 16 }}>
-                {/* <Text style={styles.inputTitle}>PASSWORD</Text> */}
                 <TextInput
                   style={styles.input}
                   textAlign={"center"}
@@ -100,7 +101,7 @@ export default function RegistrationScreen() {
               <TouchableOpacity
                 activeOpacity={0.8}
                 style={styles.btn}
-                onPress={keyboardHide}
+                onPress={onSubmit}
               >
                 <Text style={styles.btnTitle}>Зареєструватися</Text>
               </TouchableOpacity>
@@ -118,10 +119,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
-  text: {
-    // color: "green",
-    // fontSize: 30,
-  },
+
   authBcg: {
     flex: 1,
     resizeMode: "cover",
@@ -131,7 +129,7 @@ const styles = StyleSheet.create({
   form: {
     position: "relative",
     paddingTop: 92,
-    paddingBottom: 78,
+    // paddingBottom: 78,
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#ffffff",
@@ -169,19 +167,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F6F6F6",
     borderWidth: 1,
     borderColor: "#E8E8E8",
-
-    // color: "#fff",
-    // textAlign: "center",
   },
-
-  //   inputTitle: {
-  //     color: "#fff",
-  //     fontSize: 18,
-  //   },
-
-  //   placeholderStyle: {
-  //     textAlign: "left",
-  //   },
 
   btn: {
     borderWidth: 1,
