@@ -63,6 +63,8 @@ export default function RegistrationScreen() {
                   onChangeText={(value) =>
                     setstate((prevState) => ({ ...prevState, nickname: value }))
                   }
+                  placeholder="Логін"
+                  placeholderTextColor={"#BDBDBD"}
                 />
               </View>
               <View style={{ marginTop: 16 }}>
@@ -75,6 +77,8 @@ export default function RegistrationScreen() {
                   onChangeText={(value) =>
                     setstate((prevState) => ({ ...prevState, email: value }))
                   }
+                  placeholder="Адреса електронної пошти"
+                  placeholderTextColor={"#BDBDBD"}
                 />
               </View>
               <View style={{ marginTop: 16 }}>
@@ -88,6 +92,8 @@ export default function RegistrationScreen() {
                   onChangeText={(value) =>
                     setstate((prevState) => ({ ...prevState, password: value }))
                   }
+                  placeholder="Пароль"
+                  placeholderTextColor={"#BDBDBD"}
                 />
               </View>
 
@@ -158,6 +164,7 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 8,
     marginHorizontal: 16,
+    paddingHorizontal: 16,
 
     backgroundColor: "#F6F6F6",
     borderWidth: 1,
@@ -170,6 +177,10 @@ const styles = StyleSheet.create({
   //   inputTitle: {
   //     color: "#fff",
   //     fontSize: 18,
+  //   },
+
+  //   placeholderStyle: {
+  //     textAlign: "left",
   //   },
 
   btn: {
