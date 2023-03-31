@@ -19,7 +19,8 @@
     "react-devtools-core": "^4.22.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
-    "react-native-web": "~0.18.10"
+    "react-native-web": "~0.18.10",
+    "undefined": "expo/webpack-config@^0.17.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
