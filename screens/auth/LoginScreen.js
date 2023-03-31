@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
 
   formTitle: {
     fontSize: 30,
-    fontWeight: 500,
+    fontWeight: "bold",
     color: "#212121",
   },
 
@@ -184,7 +184,6 @@ const styles = StyleSheet.create({
   btnTitle: {
     fontStyle: "normal",
     fontSize: 16,
-    fontWeight: 400,
 
     color: "#ffffff",
     lineHeight: 19,
@@ -193,7 +192,6 @@ const styles = StyleSheet.create({
 
   signinText: {
     fontStyle: "normal",
-    fontWeight: 400,
     fontSize: 16,
 
     color: "#1B4371",
